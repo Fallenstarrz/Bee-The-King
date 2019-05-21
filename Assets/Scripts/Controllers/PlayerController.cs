@@ -13,6 +13,14 @@ public class PlayerController : MonoBehaviour
     }
     public InputMapping myInput;
 
+    private void Start()
+    {
+        if (myInput == InputMapping.controller)
+        {
+            myPawn.usingController = true;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -63,7 +71,7 @@ public class PlayerController : MonoBehaviour
             {
                 myPawn.shoot();
             }
-            myPawn.aimTowards(new Vector3(Input.GetAxis("AimHorizontal"), Input.GetAxis("AimVertical"), 0.0f));
+            myPawn.aimTowards(new Vector3(Input.GetAxis("AimHorizontal"), Input.GetAxis("AimVertical"), 1.0f));
         }
     }
 

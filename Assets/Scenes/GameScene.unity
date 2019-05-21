@@ -740,7 +740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targets:
   - {fileID: 1208143058}
-  - {fileID: 852282109}
+  - {fileID: 1328372507}
   offset: {x: 0, y: 0, z: -20}
   smoothRate: 0.1
   minZoom: 40
@@ -1048,11 +1048,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4497315134295486, guid: 08b9784f07ef58e4d9e15c84c871212c,
     type: 2}
   m_PrefabInternal: {fileID: 1733219160}
---- !u!4 &852282109 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4464304272638770, guid: 80c4736b42dfbb84eaf9707b55ae84cc,
-    type: 2}
-  m_PrefabInternal: {fileID: 1098301113}
 --- !u!1 &875514238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1409,6 +1404,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1781664921}
   m_Script: {fileID: 11500000, guid: 92ba7918dac45004690618c851132c0c, type: 3}
+--- !u!4 &1328372507 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4433311660251236, guid: 08b9784f07ef58e4d9e15c84c871212c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1733219160}
 --- !u!1 &1429142468
 GameObject:
   m_ObjectHideFlags: 0

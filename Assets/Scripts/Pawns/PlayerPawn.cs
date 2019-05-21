@@ -17,6 +17,7 @@ public class PlayerPawn : MonoBehaviour
     public bool isInAir;
     public bool isWalking;
     public bool isDead;
+    public bool usingController;
 
     public float distanceToFeet;
 
@@ -115,11 +116,17 @@ public class PlayerPawn : MonoBehaviour
 
     public void aimTowards(Vector3 targetToLookAt)
     {
-        Vector3 dir = targetToLookAt - Camera.main.WorldToScreenPoint(thorax.position);
-        float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) + 90;
-        thorax.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-        Debug.DrawRay(thorax.position, thorax.right, Color.red);
+        if (usingController == false)
+        {
+            Vector3 dir = targetToLookAt - Camera.main.WorldToScreenPoint(thorax.position);
+            float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) + 90;
+            thorax.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+        else
+        {
+            float angle = (Mathf.Atan2(targetToLookAt.y, targetToLookAt.x) * Mathf.Rad2Deg) + 90;
+            thorax.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
     }
 
     public void shoot()
@@ -131,6 +138,7 @@ public class PlayerPawn : MonoBehaviour
 
     public void die()
     {
+        Camera.main.GetComponent<CameraFollowMultiple>().targets.Remove(this.gameObject.transform);
         if (this.gameObject.name == "Player 1")
         {
             Debug.Log("Player 1 Died");

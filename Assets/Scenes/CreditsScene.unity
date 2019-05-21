@@ -811,10 +811,6 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Marma - Music
 
-    Austin Herrington - SFX
-
-    John Kavassy - SFX
-
     Christopher Koon - Everything Else...'
 --- !u!222 &1922148212
 CanvasRenderer:
