@@ -11,10 +11,13 @@ public class Projectile : MonoBehaviour
 
     public GameObject destroyEffect;
 
+    public AudioSource audioThing;
+
     // Use this for initialization
     void Start()
     {
         tf = GetComponent<Transform>();
+        audioThing = GetComponent<AudioSource>();
         Invoke("DestroyProjectile", lifeTime);
     }
     // Update is called once per frame
@@ -28,11 +31,16 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
-        if (collision.gameObject.tag == "Player")
+        else if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerPawn>().isDead = true;
             collision.gameObject.GetComponent<PlayerPawn>().die();
             GameManager.instance.winner = owner;
+        }
+        else
+        {
+            // Play Miss Sound #1
+            audioThing.Play();
         }
         Invoke("DestroyProjectile", 0);
     }

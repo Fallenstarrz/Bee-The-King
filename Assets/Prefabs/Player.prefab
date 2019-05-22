@@ -604,19 +604,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thorax: {fileID: 4682618910267182}
+  bulletPrefab: {fileID: 0}
+  firingPoint: {fileID: 0}
   isInAir: 0
   isWalking: 0
   isDead: 0
+  usingController: 0
   distanceToFeet: 1.95
   moveSpeed: 7
   jumpForce: 12
   maxJumps: 7
   shootRechargeTimeMax: 0
-  shootingSound: {fileID: 0}
-  jumpingSound: {fileID: 0}
-  landingSound: {fileID: 0}
-  deathSound: {fileID: 0}
-  flightSound: {fileID: 0}
+  shootingSound: {fileID: 8300000, guid: c0f00bb55a1a7874aad957608cd97c45, type: 3}
+  jumpingSound: {fileID: 8300000, guid: 8220bd740c52dd34584dcf502cd03184, type: 3}
+  landingSound: {fileID: 8300000, guid: 512bdcc0fcd1b074899d57ab742e470b, type: 3}
+  deathSound: {fileID: 8300000, guid: 05dadc4eecc802b46a7894c7ddb5af4c, type: 3}
 --- !u!212 &212002987100362794
 SpriteRenderer:
   m_ObjectHideFlags: 1

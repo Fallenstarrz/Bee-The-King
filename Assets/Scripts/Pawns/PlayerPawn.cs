@@ -9,6 +9,7 @@ public class PlayerPawn : MonoBehaviour
     private Transform tf;
     private Rigidbody2D rb;
     //private Animator anim;
+    private AudioSource audioThing;
 
     public Transform thorax;
     public GameObject bulletPrefab;
@@ -33,7 +34,6 @@ public class PlayerPawn : MonoBehaviour
     public AudioClip jumpingSound;
     public AudioClip landingSound;
     public AudioClip deathSound;
-    public AudioClip flightSound;
 
 
     // Use this for initialization
@@ -42,6 +42,7 @@ public class PlayerPawn : MonoBehaviour
         tf = GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         //anim = GetComponent<Animator>();
+        audioThing = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,16 +52,25 @@ public class PlayerPawn : MonoBehaviour
         // Set animator to isInAir
         // anim.SetBool("isInAir", isInAir);
     }
+    bool isInAiry;
     public bool checkGround()
     {
         RaycastHit2D hit;
         hit = Physics2D.Raycast(tf.position, Vector2.down, distanceToFeet);
         if (hit.collider == null)
         {
+            isInAiry = true;
             return true;
         }
         else
         {
+            if (isInAiry == true)
+            {
+                isInAiry = false;
+                // Play Sound for Landed #2
+                audioThing.clip = landingSound;
+                audioThing.Play(); 
+            }
             currentJumps = 0;
             return false;
         }
@@ -104,6 +114,9 @@ public class PlayerPawn : MonoBehaviour
             return;
         }
 
+        // play sound for jump #3
+        audioThing.clip = jumpingSound;
+        audioThing.Play();
         rb.velocity = Vector3.up * jumpForce;
         //rb.AddForce(Vector3.up * jumpForce);
         currentJumps++;
@@ -132,6 +145,9 @@ public class PlayerPawn : MonoBehaviour
     public void shoot()
     {
         // Instantiate a projectile and have it propel at it's start
+        // Play Sound shoot #4
+        audioThing.clip = shootingSound;
+        audioThing.Play();
         Projectile myBullet = Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation).GetComponent<Projectile>();
         myBullet.owner = this.gameObject.name;
     }
@@ -149,7 +165,9 @@ public class PlayerPawn : MonoBehaviour
             Debug.Log("Player 2 Died");
             GameManager.instance.winner = "Player 1";
         }
-
+        // Play Sound for hurt #5
+        audioThing.clip = deathSound;
+        audioThing.Play();
         GameManager.instance.displayWinner();
         Destroy(this.gameObject, 0.0f);
     }
